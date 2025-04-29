@@ -15,6 +15,6 @@ def divide(x,y):
         print("Error: cannot divide by zero.")
     else:
         print("%d/%d=%0.3f" % (x, y, x/y))
-
+    
 if __name__=="__main__":
     main()
