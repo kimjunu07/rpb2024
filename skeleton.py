@@ -5,8 +5,7 @@ from rclpy.node import Node
 from sensor_msgs.msg import Image, CompressedImage
 from cv_bridge import CvBridge, CvBridgeError
 from std_msgs.msg import Header
-import numpy as np  # 이미지 평균 계산을 위해 필요
-
+import numpy as np  
 class DetermineColor(Node):
     def __init__(self):
         super().__init__('color_detector')
@@ -26,15 +25,15 @@ class DetermineColor(Node):
             msg.frame_id = '0'  # default: STOP
 
             # determine background color
-            avg_color = np.mean(image, axis=(0, 1))  # 평균 BGR 값 계산
+            avg_color = np.mean(image, axis=(0, 1)) 
             blue, green, red = avg_color
 
             if blue > red and blue > green:
-                msg.frame_id = '-1'  # CW (파란색)
+                msg.frame_id = '-1' 
             elif red > blue and red > green:
-                msg.frame_id = '+1'  # CCW (빨간색)
+                msg.frame_id = '+1' 
             else:
-                msg.frame_id = '0'   # STOP (그 외)
+                msg.frame_id = '0' 
 
             # publish color_state
             self.color_pub.publish(msg)
