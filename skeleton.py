@@ -36,6 +36,7 @@ class DetermineColor(Node):
             else:
                 msg.frame_id = '0'   
 
+
             # publish color_state
             self.color_pub.publish(msg)
 
